@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function Card({title, content}) {
+export default function Card({title, content, image}) {
 
     return (
-        <div className="w-full p-6 mx-auto bg-blue-700 rounded-md shadow-md  ">
-            <div className="p-4 lg:p-8 rounded-xl bg-blueGray-50">
+        <div className="md:w-full sm:w-2/3 p-6 mx-auto bg-deep-cerulean-600 rounded-md shadow-md  ">
+            <div className="p-4 lg:p-8 rounded-xl ">
             <img className="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl" 
-                src="https://dummyimage.com/720x400/F3F4F7/8693ac" alt="blog"
+                src={image} alt="blog"
             />
             <h1 className="mx-auto mb-8 text-2xl text-center font-semibold leading-none tracking-tighter text-white title-font">
                  {title} 

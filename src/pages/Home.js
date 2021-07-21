@@ -1,17 +1,23 @@
 import React from 'react'
 import Card from '../components/Card'
 
+
+//TODO:change cards images
+//TODO:display more details like how the app works Socket io and stuff
+
+
 export default function home() {
-    return (
-        
-        <div className="p-12">
-          <div className="grid grid-cols-3 gap-6">
-            <Card title="Create Rooms " content="Create Rooms with your team and collaborate on project that matters to you" />
-            <Card title="Chat with your Team" content="Chat with your team members and get things done faster and easier " />
-            <Card title="test title 3" content="test content 3" />
-          </div>
-        </div>
+
+  return (
       
+    <div className="p-12 bg-gray-200">
+      <div className="grid md:grid-cols-3 gap-6">
+        <Card title="Create Rooms " content="Create Rooms with your team and collaborate on project that matters to you" image="https://dummyimage.com/720x400/F3F4F7/8693ac" />
+        <Card title="Chat With Your Team" content="Chat with your team members and get things done faster and easier " image="https://dummyimage.com/720x400/F3F4F7/8693ac" />
+        <Card title="Video Chat With Your Team" content="Need to have more serious conversations or just a face to face with your team mates video chat them" image="https://dummyimage.com/720x400/F3F4F7/8693ac" />
+      </div>
+    </div>
     
-    )
+  
+  )
 }
