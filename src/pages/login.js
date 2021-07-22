@@ -1,9 +1,13 @@
 import React from 'react'
 
 export default function login() {
+
+    //TODO:setup component state using useState hook
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
-
+        
+        //TODO: check if emty before fetch
         let email = e.target.elements.email.value;
         let password = e.target.elements.password.value;
 
@@ -42,7 +46,7 @@ export default function login() {
 
                     <div className='flex justify-center items-center mt-6'>
                         <button
-                            className="bg-white py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500">
+                            className="bg-white py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500 hover:text-white">
                             Log In
                         </button>
                     </div>

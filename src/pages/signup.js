@@ -5,6 +5,7 @@ export default function signup() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         
+        //TODO: check if emty before fetch
         let name = e.target.elements.name.value;
         let email = e.target.elements.email.value;
         let password = e.target.elements.password.value;
