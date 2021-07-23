@@ -31,6 +31,7 @@ export default function signup() {
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm  mb-4`}
                             id='name'
                             placeholder='Your Name'
+                            required
                         />
                     </div>
                     <div>
@@ -40,6 +41,7 @@ export default function signup() {
                             className={`w-full p-2  border-2  text-black border-gray-300 rounded-md outline-none text-sm  mb-4`}
                             id='email'
                             placeholder='Your Email'
+                            required
                         />
                     </div>
                     <div>
@@ -49,6 +51,7 @@ export default function signup() {
                             className={`w-full p-2  border-2 border-gray-300 text-black rounded-md outline-none text-sm  mb-4`}
                             id='password'
                             placeholder='Your Password'
+                            required
                         />
                     </div>
 

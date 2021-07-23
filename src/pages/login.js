@@ -32,6 +32,7 @@ export default function login() {
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='email'
                             placeholder='Your Email'
+                            required
                         />
                     </div>
                     <div>
@@ -41,6 +42,7 @@ export default function login() {
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='password'
                             placeholder='Your Password'
+                            required
                         />
                     </div>
 
