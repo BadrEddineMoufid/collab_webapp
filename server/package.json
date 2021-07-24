@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "callab_webapp server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev":"nodemon server.js"
+    "dev": "nodemon server.js"
   },
-  "author": "",
+  "author": "badr eddine",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.7",
+    "morgan": "^1.10.0",
     "pg": "^8.6.0"
   },
   "devDependencies": {
