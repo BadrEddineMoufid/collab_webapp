@@ -12,10 +12,10 @@ export default function NavBar() {
                         <Link className="p-3 hover:font-extrabold" to="/" >Home</Link>
                     </li>
                     <li className="sm:inline-block ">
-                        <Link className="p-3 hover:font-extrabold " to="/login" >LogIn</Link>
+                        <Link className="p-3 hover:font-extrabold " to="/login" >Log In</Link>
                     </li>
                     <li className="sm:inline-block">
-                        <Link className="p-3 hover:font-extrabold" to="/signup" >SignUp</Link>
+                        <Link className="p-3 hover:font-extrabold" to="/signup" >Sign Up</Link>
                     </li>
 
                 </ul>

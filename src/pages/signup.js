@@ -13,6 +13,19 @@ export default function signup() {
         console.log(name, email, password);
 
         //TODO: setup the fetch request for signup
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/register`,{
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        }).catch(err => console.log(err))
     };
 
 

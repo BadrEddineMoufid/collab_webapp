@@ -33,10 +33,8 @@ router.post('/login',  async (req, res) => {
         const accessToken = generateAccessToken({userId: user[0].id})
                     
         res.json({
-            token: {
-                accessToken
-            },
-            user: {name: user[0].name, email: user[0].email}
+            token:accessToken,
+            user: {name: user[0].user_name, email: user[0].email}
         })
        
 
@@ -79,7 +77,7 @@ router.post('/register', async (req, res) => {
         //console.log('hashed pasword: ' + hashedPassword)
         
         //save user to db
-        const user = await knex('users').returning(['name', 'email', 'id']).insert({name, email, hash:hashedPassword})
+        const user = await knex('users').returning(['user_name', 'email', 'id']).insert({user_name:name, email, hash:hashedPassword})
         
         
         
@@ -88,10 +86,8 @@ router.post('/register', async (req, res) => {
                     
         
         res.json({
-            token: {
-                accessToken
-            },
-            user: {name: user[0].name, email: user[0].email}
+            token: accessToken,
+            user: {name: user[0].user_name, email: user[0].email}
         })
         
 

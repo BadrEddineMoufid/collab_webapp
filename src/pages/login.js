@@ -1,21 +1,37 @@
-import React from 'react'
+import React , {useState} from 'react'
+import { Redirect } from 'react-router';
 
-export default function login() {
+const Login = () => {
 
     //TODO:setup component state using useState hook
 
+    const [redirect, setRedirect] = useState(false)
+
     const handleFormSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault();    
+
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/login`,{
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                email: e.target.elements.email.value,
+                password: e.target.elements.password.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if(data.user.name){
+                setRedirect(true);
+            }
+        }).catch(err => console.log(err))
+
         
-        //TODO: check if emty before fetch
-        let email = e.target.elements.email.value;
-        let password = e.target.elements.password.value;
-
-        console.log(email, password);
-
-
-        //TODO: setup the fetch request for login
     };
+
+    if(redirect){
+        return <Redirect to="/" />
+    }
 
     return (
         <div className='h-screen flex bg-gray-200'>
@@ -47,8 +63,7 @@ export default function login() {
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
-                        <button
-                            className="bg-white py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500 hover:text-white">
+                        <button className="bg-white py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500 hover:text-white">
                             Log In
                         </button>
                     </div>
@@ -57,3 +72,5 @@ export default function login() {
         </div>
     )
 }
+
+export default Login;
