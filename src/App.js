@@ -9,7 +9,8 @@ import Login from "./pages/login";
 //app should have a islogedIn state so that it can be passed to the nav bar and other components
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  user_name: ''
 }
 
 class App extends Component {
@@ -29,6 +30,11 @@ class App extends Component {
       this.setState({isLoggedIn: false})
     }
   }
+
+  setUserName = (userName) => {
+    this.setState({user_name: userName})
+  }
+
   render(){
     return (
       <Router>
@@ -36,10 +42,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" >
-            <Signup setIsLoggedIn={this.setIsLoggedIn} />
+            <Signup setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
           <Route exact path="/login">
-            <Login setIsLoggedIn={this.setIsLoggedIn} />
+            <Login setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
         </Switch>
       </Router>

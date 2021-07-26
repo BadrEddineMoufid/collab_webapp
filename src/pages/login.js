@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import { Redirect } from 'react-router';
 
-const Login = ({setIsLoggedIn}) => {
+const Login = ({setIsLoggedIn, setUserName}) => {
 
     //DONE:setup component state using useState hook
 
@@ -20,11 +20,17 @@ const Login = ({setIsLoggedIn}) => {
         })
         .then(response => response.json())
         .then(data => {
+            //debug stuff
             console.log(data)
+
+            
             //TODO: store token in localStorge or something 
+            
             if(data.user.name){
-                setRedirect(true);
-                setIsLoggedIn(true);
+
+                setRedirect(true)
+                setIsLoggedIn(true)
+                setUserName(data.user.name)
             }
         }).catch(err => console.log(err))
 

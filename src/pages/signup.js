@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Redirect } from 'react-router-dom';
 
-export default function signup() {
+export default function Signup({setIsLoggedIn, setUserName}) {
+
+    const [redirect, setRedirect] = useState(false)
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -24,10 +27,26 @@ export default function signup() {
         })
         .then(response => response.json())
         .then(data => {
+            
+            //debug
             console.log(data)
+            
+            //TODO: store token 
+
+            if(data.user.name){
+                setRedirect(true)
+
+                setIsLoggedIn(true)
+                setUserName(data.user.name)
+            }
+
         }).catch(err => console.log(err))
     };
 
+    //if redirect is true go to home, true only when signup or login is a success 
+    if(redirect){
+        <Redirect to='/' />
+    }
 
     return (
         <div className='h-screen flex bg-gray-200'>
