@@ -5,14 +5,14 @@ export default function signup() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         
-        //TODO: check if emty before fetch
+        //DONE: check if emty before fetch : server side validation is enough 
         let name = e.target.elements.name.value;
         let email = e.target.elements.email.value;
         let password = e.target.elements.password.value;
 
         console.log(name, email, password);
 
-        //TODO: setup the fetch request for signup
+        //DONE: setup the fetch request for signup
         fetch(`${process.env.REACT_APP_API_BASE_URL}/register`,{
             method: 'post',
             headers: {'Content-type': 'application/json'},

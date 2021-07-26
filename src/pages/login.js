@@ -1,15 +1,15 @@
 import React , {useState} from 'react'
 import { Redirect } from 'react-router';
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
 
-    //TODO:setup component state using useState hook
+    //DONE:setup component state using useState hook
 
     const [redirect, setRedirect] = useState(false)
 
     const handleFormSubmit = (e) => {
         e.preventDefault();    
-
+        
         fetch(`${process.env.REACT_APP_API_BASE_URL}/login`,{
             method: 'post',
             headers: {'Content-type': 'application/json'},
@@ -21,8 +21,10 @@ const Login = () => {
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            //TODO: store token in localStorge or something 
             if(data.user.name){
                 setRedirect(true);
+                setIsLoggedIn(true);
             }
         }).catch(err => console.log(err))
 
