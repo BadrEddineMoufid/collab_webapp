@@ -9,7 +9,7 @@ const {generateAccessToken} = require('../helper/generateTokens')
 
 router.post('/login',  async (req, res) => {
 
-    //validating user input 
+    //validating input 
     const {error} = loginValidation(req.body)
     if (error) return res.status(400).json({error: "invalid email or password"})
 

@@ -20,6 +20,10 @@ class App extends Component {
     this.state = initialState;
   }
 
+  componentDidMount(){
+    console.log(`ComponentDidMount| isLoggedIn:${this.state.isLoggedIn}`)
+  }
+
   setIsLoggedIn = (loggedIn) =>{
     if(loggedIn){
       this.setState({isLoggedIn: true})

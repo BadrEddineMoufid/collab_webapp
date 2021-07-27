@@ -18,7 +18,10 @@ app.use(express.json());
 
 
 //routes
-app.use(cors()); 
+app.use(cors());
+
+
+//TODO: setup socketio stuff 
 
 
 app.use('/api/v1/',authRoute)

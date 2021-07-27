@@ -40,7 +40,7 @@ export default function Signup({setIsLoggedIn, setUserName}) {
                 setUserName(data.user.name)
             }
 
-        }).catch(err => console.log(err))
+        }).catch(err => console.err(err))
     };
 
     //if redirect is true go to home, true only when signup or login is a success 

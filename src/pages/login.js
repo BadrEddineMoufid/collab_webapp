@@ -26,13 +26,13 @@ const Login = ({setIsLoggedIn, setUserName}) => {
             
             //TODO: store token in localStorge or something 
             
-            if(data.user.name){
+            if(data.user){
 
                 setRedirect(true)
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
             }
-        }).catch(err => console.log(err))
+        }).catch(err => console.err(err))
 
         
     };
