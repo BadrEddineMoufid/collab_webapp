@@ -15,7 +15,7 @@ export default function NavBar({loggedIn}) {
                     </li>
                     {   loggedIn ?
                         <li className="sm:inline-block  ">
-                            <Link className="p-3 hover:font-extrabold" to="/room">Create Room</Link>
+                            <Link className="p-3 hover:font-extrabold" to="/chat">Create Room</Link>
                         </li> 
                         :
                         

@@ -4,6 +4,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from "./pages/Home";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import Chat from './pages/Chat';
+import NewRoom from './pages/NewRoom';
 
 
 //app should have a islogedIn state so that it can be passed to the nav bar and other components
@@ -51,6 +53,8 @@ class App extends Component {
           <Route exact path="/login">
             <Login setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
+          <Route exact path='/chat' component={Chat} />
+          <Route exact path="/newroom" component={NewRoom} />
         </Switch>
       </Router>
     );
