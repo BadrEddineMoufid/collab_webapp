@@ -12,7 +12,8 @@ import NewRoom from './pages/NewRoom';
 
 const initialState = {
   isLoggedIn: false,
-  user_name: ''
+  user_name: '',
+  roomName:''
 }
 
 class App extends Component {
@@ -41,6 +42,11 @@ class App extends Component {
     this.setState({user_name: userName})
   }
 
+  setRoomName = (roomName)=>{
+    this.setState({roomName:roomName})
+    console.log(this.state.roomName)
+  }
+
   render(){
     return (
       <Router>
@@ -53,8 +59,12 @@ class App extends Component {
           <Route exact path="/login">
             <Login setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
-          <Route exact path='/chat' component={Chat} />
-          <Route exact path="/newroom" component={NewRoom} />
+          <Route exact path='/chat'>
+            <Chat roomName={this.state.roomName} />
+          </Route>
+          <Route exact path="/newroom">
+            <NewRoom setRoomName={this.setRoomName}  />
+          </Route>
         </Switch>
       </Router>
     );
