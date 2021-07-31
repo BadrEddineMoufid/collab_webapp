@@ -34,13 +34,15 @@ export default function Signup({setIsLoggedIn, setUserName}) {
             //TODO: store token 
 
             if(data.user.name){
+                setUserName(data.user.name)
+                setIsLoggedIn(true)
                 setRedirect(true)
 
-                setIsLoggedIn(true)
-                setUserName(data.user.name)
+                
+                
             }
 
-        }).catch(err => console.err(err))
+        }).catch(err => console.log("sign up error: ", err))
     };
 
     //if redirect is true go to home, true only when signup or login is a success 

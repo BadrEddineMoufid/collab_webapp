@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 6000;
 //express stuff
 const app = express()
 const server = http.createServer(app)
-const io = socketio(server)
+const io = socketio(server, {
+    cors:{origin:'*'}
+})
 
 //import routes
 const authRoute = require("./routes/auth")
@@ -29,11 +31,18 @@ app.use(cors());
 app.use('/api/v1/',authRoute)
 
 
-//TODO: setup socketio stuff 
+//DONE: setup socketio stuff 
 
 
 io.on('connection', socket =>{
     console.log('new ws connection')
+
+    socket.on('chatMessage', payload =>{
+        
+        console.log("Message received server side: ", payload)
+        
+        io.emit('message', payload)
+    })
 })
 
 
