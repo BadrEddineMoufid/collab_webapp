@@ -11,7 +11,7 @@ function Chat({roomName, userName, isLoggedIn}) {
     //come back here i think idk shit to complex for me i want backend stuff :( °~°
     //pass users and room name to SideBar
     const [users, setUsers] = useState([])
-    ;
+    
     return (
         <div className='relative min-h-screen flex' >
             <SideBar roomName={roomName} users={users} />

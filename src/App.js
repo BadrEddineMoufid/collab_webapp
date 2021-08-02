@@ -17,10 +17,11 @@ const initialState = {
 }
 
 class App extends Component {
-
+  
   constructor(){
     super();
     this.state = initialState;
+    
   }
 
   componentDidMount(){

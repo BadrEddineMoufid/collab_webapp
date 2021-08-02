@@ -32,7 +32,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
             }
-        }).catch(err => console.err(err))
+        }).catch(err => console.log(err))
 
         
     };
