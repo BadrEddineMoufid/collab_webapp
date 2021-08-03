@@ -6,6 +6,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
     //DONE:setup component state using useState hook
 
     const [redirect, setRedirect] = useState(false)
+    const [err, setErr] = useState('');
 
     const handleFormSubmit = (e) => {
         e.preventDefault();    
@@ -31,8 +32,13 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                 setRedirect(true)
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
+            }else{
+                setErr(data)
             }
-        }).catch(err => console.log(err))
+        }).catch(err => {
+           
+            console.log(err)
+        })
 
         
     };
@@ -50,7 +56,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
 
                 <form onSubmit={handleFormSubmit}>
                     <div>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='email' >Email</label>
                         <input
                             type='email'
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -75,6 +81,10 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                             Log In
                         </button>
                     </div>
+
+                    {
+                        err ? <span className='flex justify-center items-center mt-6 text-white' >{err.error}</span> : <span></span>
+                    }
                 </form>
             </div>
         </div>

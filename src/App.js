@@ -6,6 +6,8 @@ import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Chat from './pages/Chat';
 import NewRoom from './pages/NewRoom';
+import io from 'socket.io-client'
+
 
 
 //app should have a islogedIn state so that it can be passed to the nav bar and other components
@@ -15,6 +17,9 @@ const initialState = {
   user_name: '',
   roomName:''
 }
+
+const socket = io(process.env.REACT_APP_SOCKET_BASE_URL)
+
 
 class App extends Component {
   
@@ -51,7 +56,7 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <NavBar loggedIn={this.state.isLoggedIn} />
+        <NavBar loggedIn={this.state.isLoggedIn} userName={this.state.user_name} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" >
@@ -61,7 +66,7 @@ class App extends Component {
             <Login setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
           <Route exact path='/chat'>
-            <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} />
+            <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} socket={socket} />
           </Route>
           <Route exact path="/newroom">
             <NewRoom setRoomName={this.setRoomName}  />

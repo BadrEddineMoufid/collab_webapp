@@ -65,14 +65,16 @@ io.on('connection', socket => {
     });
   
     // Listen for chatMessage
-    socket.on('chatMessage', msg => {
+    socket.on('chatMessage', data => {
 
-        console.log(msg)
-        //determin user using socket id and get current user the emit msg to user's room
-        const user = getCurrentUser(socket.id);
+        console.log("received data from client: ", data)
+        let {username, text} = data;
+
+        //get user and room the emit msg to user's room
+        const user = getCurrentUser(username);
        
-        let out = formatMessage(user.username, msg)
-        console.log(out)
+        let out = formatMessage(user.username, text)
+        console.log("emited data to room ", out)
 
 
         io.to(user.room).emit('message', out);

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function NavBar({loggedIn}) {
+export default function NavBar({loggedIn, userName}) {
 
     ///get a prop islogedin if true render home link and room link else render default nav 
     return (
@@ -14,9 +14,13 @@ export default function NavBar({loggedIn}) {
                         <Link className="p-3 hover:font-extrabold" to="/" >Home</Link>
                     </li>
                     {   loggedIn ?
-                        <li className="sm:inline-block  ">
-                            <Link className="p-3 hover:font-extrabold" to="/newRoom">Create Room</Link>
-                        </li> 
+                        <React.Fragment>
+                            <li className="sm:inline-block  ">
+                                <Link className="p-3 hover:font-extrabold" to="/newRoom">Create or Join room </Link>
+                            
+                            </li> 
+                            <li className="sm:inline-block font-thin" > ({userName}) </li>
+                        </React.Fragment>
                         :
                         
                         <span>
