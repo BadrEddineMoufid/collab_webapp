@@ -6,7 +6,7 @@ import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Chat from './pages/Chat';
 import NewRoom from './pages/NewRoom';
-import io from 'socket.io-client'
+
 
 
 
@@ -18,7 +18,7 @@ const initialState = {
   roomName:''
 }
 
-const socket = io(process.env.REACT_APP_SOCKET_BASE_URL)
+
 
 
 class App extends Component {
@@ -66,7 +66,7 @@ class App extends Component {
             <Login setIsLoggedIn={this.setIsLoggedIn} setUserName={this.setUserName} />
           </Route>
           <Route exact path='/chat'>
-            <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} socket={socket} />
+            <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} />
           </Route>
           <Route exact path="/newroom">
             <NewRoom setRoomName={this.setRoomName}  />

@@ -11,7 +11,7 @@ require('dotenv').config();
 
 //PORT 
 const PORT = process.env.PORT || 7000;
-const botName = process.env.BOTNAME || 'server';
+const botName = process.env.BOTNAME || 'SERVER';
 
 //express, socket io stuff
 const app = express()
@@ -62,6 +62,9 @@ io.on('connection', socket => {
         room: user.room,
         users: getRoomUsers(user.room)
       });
+
+
+      
     });
   
     // Listen for chatMessage
@@ -97,6 +100,11 @@ io.on('connection', socket => {
         });
       }
     });
+
+
+
+
+    
   });
 
 

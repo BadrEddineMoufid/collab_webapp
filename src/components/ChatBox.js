@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
+import io from 'socket.io-client'
 
 
+let socket; 
+const ENDPOINT = process.env.REACT_APP_SOCKET_BASE_URL;
 
-
-export default function ChatBox({userName, roomName, setUsers, socket}) {
+export default function ChatBox({userName, roomName, setUsers}) {
     const [chat, setChat] = useState([])
     const [message, setMessage] = useState('')
 
@@ -11,29 +13,28 @@ export default function ChatBox({userName, roomName, setUsers, socket}) {
     //DONE: display users to side bar
 
     useEffect(() => {
+        socket = io(ENDPOINT);
+
         socket.emit('joinRoom', {username:userName, room:roomName}) 
 
         
-
-    },[roomName, userName, socket])
+    },[ENDPOINT, userName, roomName])
 
     useEffect(()=>{
         //message from server
         socket.on('message', data=>{
             //console.log('message from server: ',data)
 
-            setChat([...chat, data])
+            setChat(chat =>[...chat, data])
         })
-
-        
-    })
-    
-    useEffect(()=>{
         socket.on('roomUsers', data =>{
             //console.log(data)
             setUsers(data.users);
         })
-    }, [socket])
+        
+    }, [])
+    
+    
 
     const handlSubmit = e=>{
         e.preventDefault()
@@ -48,26 +49,35 @@ export default function ChatBox({userName, roomName, setUsers, socket}) {
     }
 
     return (
-        <div className='h-screen w-full bg-gray-200'>
-            <div className=" h-2/3 p-4 m-4 overflow-y-auto " >
+        <div className='h-screen w-full bg-gray-200 '>
+            <div className=" h-2/3 p-4 m-4 overflow-y-auto  relative" >
                 {
                     chat.map((chat,i)=>{
                         return ( 
                             
                             chat.username === 'COLLAB_BOT' ? 
-                            <div className="bg-white rounded-md shadow-md m-4 text-black w-2/3 " key={i}>
+                            <div className="bg-white rounded-md absolute left-0 shadow-md m-4 text-black w-2/3 relative" key={i}>
                                 <div className='' >
                                     <h3 className='m-6 inline-block '  > {chat.text} </h3>
-                                    <span className='text-sm' > {chat.time} </span>
-                                    <span className='text-sm' > {chat.username} </span>
+                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
                                 </div>
                             </div>
                             : 
-                            <div className="bg-blue-500 rounded-md shadow-md m-4 text-white w-2/3 " key={i}>
+                            chat.username === userName ?
+                            <div className="absolute right-0 bg-green-500 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
                                 <div className='' >
                                     <h3 className='m-6 inline-block '  > {chat.text} </h3>
-                                    <span className='text-sm' > {chat.time} </span>
-                                    <span className='text-sm' > {chat.username} </span>
+                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+                                </div>
+                            </div>
+                            :  
+                            <div className="bg-blue-500 absolute left-0 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
+                                <div className='' >
+                                    <h3 className='m-6 inline-block '  > {chat.text} </h3>
+                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
                                 </div>
                             </div>
                         )

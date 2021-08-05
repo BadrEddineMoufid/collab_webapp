@@ -4,7 +4,7 @@ const users = [];
 function userJoin(id, username, room) {
   const user = { id, username, room };
   if(users.find(user => user.username === username)){
-    return users;
+    return user;
   }else{
     users.push(user);
   }
