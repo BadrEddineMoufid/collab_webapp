@@ -1,3 +1,21 @@
+# Running Server
+
+## Available scripts
+
+cd to server directory and run
+
+### `npm run dev`
+
+this will start the server in dev mode and will listen on the port entered in the `.env` file
+
+### `.env` 
+the file contains all the database cnx vars and others
+
+#
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
