@@ -27,3 +27,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3c7ccf;
 }
+input[type="file"] {
+  display: none;
+}

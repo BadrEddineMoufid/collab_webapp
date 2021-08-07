@@ -8,21 +8,14 @@ import Chat from './pages/Chat';
 import NewRoom from './pages/NewRoom';
 
 
-
-
-//app should have a islogedIn state so that it can be passed to the nav bar and other components
-
 const initialState = {
   isLoggedIn: false,
   user_name: '',
   roomName:''
 }
 
-
-
-
 class App extends Component {
-  
+  // maybe some session stuff or localStorage for token MAYBE
   constructor(){
     super();
     this.state = initialState;

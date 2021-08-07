@@ -21,7 +21,7 @@ function Chat({roomName, userName, isLoggedIn}) {
     }
     
     return (
-        <div className='relative min-h-screen flex' >
+        <div className='relative h-full flex bg-gray-200' >
             <SideBar roomName={roomName} users={users} />
             <ChatBox roomName={roomName} userName={userName} setUsers={setUsers} />
         </div>

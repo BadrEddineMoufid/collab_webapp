@@ -8,7 +8,7 @@ export default function UserList({users}) {
 
     return (
         <div>
-            <ul className=" mt-2 bg-gray-200 h-80 overflow-auto rounded text-deep-cerulean-700 text-xl border ">
+            <ul className=" mt-2 bg-gray-200 h-60 overflow-auto rounded text-deep-cerulean-700 text-xl border ">
                    {
                        users.map((user, i) => 
                        

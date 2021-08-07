@@ -19,7 +19,7 @@ export default function NavBar({loggedIn, userName}) {
                                 <Link className="p-3 hover:font-extrabold" to="/newRoom">Create or Join room </Link>
                             
                             </li> 
-                            <li className="sm:inline-block font-thin" > ({userName}) </li>
+                            <li className="sm:inline-block font-thin p-3" > ({userName}) </li>
                         </React.Fragment>
                         :
                         

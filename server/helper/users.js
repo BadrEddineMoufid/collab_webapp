@@ -8,6 +8,8 @@ function userJoin(id, username, room) {
   }else{
     users.push(user);
   }
+
+  //console.log(users)
   return user;
 }
 
