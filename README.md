@@ -11,6 +11,7 @@ this will start the server in dev mode and will listen on the port entered in th
 ### `.env` 
 the file contains all the database cnx vars and others
 
+⚠ create upload dir inside server dir before running the server
 #
 
 

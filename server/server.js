@@ -3,9 +3,7 @@ const http = require('http')
 const morgan = require('morgan')
 const cors = require('cors');
 const socketio = require('socket.io')
-const multer = require('multer')
 const {userJoin,getCurrentUser,userLeave,getRoomUsers} = require('./helper/users')
-const {addRoom, addFileToRoom, getRoomFiles} = require('./helper/room')
 const formatMessage = require('./helper/messages')
 
 //env config
@@ -26,18 +24,8 @@ const io = socketio(server, {
 
 //import routes
 const authRoute = require("./routes/auth")
+const uploadRoute = require('./routes/upload')
 
-//multer stuff
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'upload');
-   },
-  filename: function (req, file, cb) {
-      cb(null , file.originalname);
-  }
-});
-
-const upload = multer({storage:storage})
 
 
 //midlwares
@@ -48,16 +36,7 @@ app.use(express.urlencoded({extended: true}))
 //routes
 app.use(cors());
 app.use('/api/v1/',authRoute)
-
-app.post('/api/v1/upload', upload.single('file'), (req, res )=>{
-  //console.dir(req.file)
-  //console.log(req.body.room)
-  
-
-  const room = addRoom(req.body.room, req.file.filename)
-
-  res.json(room)
-})
+app.use('/api/v1/', uploadRoute)
 
 //DONE: setup socketio stuff 
 

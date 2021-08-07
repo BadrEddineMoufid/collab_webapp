@@ -32,13 +32,11 @@ export default function Signup({setIsLoggedIn, setUserName}) {
             console.log(data)
             
             //TODO: store token 
-
+            
             if(data.user.name){
                 setUserName(data.user.name)
                 setIsLoggedIn(true)
                 setRedirect(true)
-
-                
                 
             }
 
