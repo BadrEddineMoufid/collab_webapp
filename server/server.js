@@ -5,9 +5,12 @@ const cors = require('cors');
 const socketio = require('socket.io')
 const {userJoin,getCurrentUser,userLeave,getRoomUsers} = require('./helper/users')
 const formatMessage = require('./helper/messages')
-
-//env config
 require('dotenv').config();
+
+//import routes
+const authRoute = require("./routes/auth")
+const uploadRoute = require('./routes/upload')
+
 
 //env stuff 
 const PORT = process.env.PORT || 7000;
@@ -20,12 +23,6 @@ const server = http.createServer(app)
 const io = socketio(server, {
   cors:{origin:'*'}
 })
-
-
-//import routes
-const authRoute = require("./routes/auth")
-const uploadRoute = require('./routes/upload')
-
 
 
 //midlwares

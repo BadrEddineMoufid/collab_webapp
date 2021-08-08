@@ -22,16 +22,16 @@ class App extends Component {
     
   }
 
-  componentDidMount(){
-    console.log(`ComponentDidMount| isLoggedIn:${this.state.isLoggedIn}`)
-  }
+  // componentDidMount(){
+  //   console.log(`ComponentDidMount| isLoggedIn:${this.state.isLoggedIn}`)
+  // }
 
   setIsLoggedIn = (loggedIn) =>{
     if(loggedIn){
       this.setState({isLoggedIn: true})
 
       //Debug stuff
-      console.log("isLoggedIn state: "+ this.state.isLoggedIn)
+      //console.log("isLoggedIn state: "+ this.state.isLoggedIn)
     }else{
       this.setState({isLoggedIn: false})
     }
@@ -43,7 +43,8 @@ class App extends Component {
 
   setRoomName = (roomName)=>{
     this.setState({roomName:roomName})
-    console.log(this.state.roomName)
+    
+    //console.log(this.state.roomName)
   }
 
   render(){

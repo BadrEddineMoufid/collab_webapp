@@ -3,8 +3,8 @@ import React from 'react'
 export default function UserList({users}) {
 
     //this component recives an array of users and displays it
-    console.log(typeof(users))
-    console.log(users)
+    //console.log(typeof(users))
+    //console.log(users)
 
     return (
         <div>
@@ -12,8 +12,8 @@ export default function UserList({users}) {
                    {
                        users.map((user, i) => 
                        
-                        <li key={i} className="ml-4 ">
-                            {user.username}
+                        <li key={i} className="m-2 ">
+                            👤 {user.username}
                         </li>
                        )
                    }

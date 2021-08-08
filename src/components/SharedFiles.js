@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 export default function SharedFiles({roomName}) {
 
@@ -18,13 +18,36 @@ export default function SharedFiles({roomName}) {
         })
         .then(data => data.json())
         .then(res => {
-            console.log(res)
+            //console.log(res)
             setFiles(res.files)
         })
         .catch(err => console.log(err))
 
 
     }
+
+    useEffect(() => {
+        const fetchData = async ()=>{
+            try{
+                const res =  await fetch(`${process.env.REACT_APP_API_BASE_URL}/roomFiles?roomname=${roomName}`, {method: 'GET'})
+                const json = await res.json();
+
+                //console.log(json)
+
+                setFiles(json.files)
+            }catch(err){
+                console.log(err)
+            }
+        }
+
+
+        const id = setInterval(()=>{
+            fetchData()
+        }, 60 * 1000)
+
+        return () => clearInterval(id)
+
+    }, [])
 
     return (
         <React.Fragment >
@@ -37,14 +60,12 @@ export default function SharedFiles({roomName}) {
                         </li>
                     )
                      
-                    
-
                     }
                 </ul>
             </div>
             
             <div className='flex justify-evenly w-full border bg-gray-200 mt-2 p-2 rounded' >
-                <label className='cursor-pointer  text-deep-cerulean-700 w-full ' htmlFor='file' >
+                <label className='cursor-pointer font-bold text-deep-cerulean-700 w-full ' htmlFor='file' >
                     Upload your file
                 </label>
                 <img alt='upload icon' className='h-full' src="https://img.icons8.com/metro/25/000000/upload.png"/>

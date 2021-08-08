@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const path = require('path')
 const multer = require('multer')
-const {addRoom} = require('../helper/room')
+const {addRoom, getRoomFiles} = require('../helper/room')
 
 
 //multer stuff
@@ -25,6 +25,11 @@ router.post('/upload', upload.single('file'), (req, res )=>{
     const room = addRoom(req.body.room, req.file.filename)
 
     res.json(room)
+})
+
+router.get('/roomFiles', (req, res)=>{
+    const files = getRoomFiles(req.query.roomname)
+    res.json(files)
 })
   
 router.get('/upload/:file', (req, res)=>{
