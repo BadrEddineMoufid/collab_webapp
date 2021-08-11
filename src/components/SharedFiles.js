@@ -33,8 +33,10 @@ export default function SharedFiles({roomName}) {
                 const json = await res.json();
 
                 //console.log(json)
+                if(json.files){
+                    setFiles(json.files)
+                }
 
-                setFiles(json.files)
             }catch(err){
                 console.log(err)
             }
@@ -53,7 +55,12 @@ export default function SharedFiles({roomName}) {
         <React.Fragment >
             <div className="mt-2 bg-gray-200 h-40 overflow-auto rounded text-deep-cerulean-700  border  " >
                 <ul>
-                    {
+                    {files.length === 0 
+                    ?
+                        <li className='text-sm text-center truncate m-1' >
+                            ⚠ no files yet
+                        </li>
+                    :
                      files.map((file, i)=>
                         <li className='text-sm truncate m-1' key={i} >
                             📌<a target='_blank' rel="noreferrer " href={`${process.env.REACT_APP_API_BASE_URL}/upload/${file}`} >{file} </a>

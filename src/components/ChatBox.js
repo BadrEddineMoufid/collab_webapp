@@ -18,7 +18,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
         socket.emit('joinRoom', {username:userName, room:roomName}) 
 
         
-    },[ENDPOINT, userName, roomName])
+    },[])
 
     useEffect(()=>{
         //message from server
@@ -41,7 +41,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 
         //console.log("handle submit: ", message)
 
-        socket.emit('chatMessage', {username: userName,text:message.trim()})
+        socket.emit('chatMessage', {username: userName,text:message.trim(), roomname:roomName})
 
         e.target.elements.chatInput.value = ''
 
@@ -92,7 +92,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
                     onChange={e =>{setMessage(e.target.value )}}
                     required
                     className="ml-4 mr-4 absolute bottom-20 lef-0 sm:w-1/3 md:w-2/3 p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm" type="text" />
-                <button className=' absolute bottom-20 right-0 ml-3 mr-8 bg-deep-cerulean-600 py-2 px-4 text-sm text-white  rounded border' >Send Message</button>
+                <button className=' absolute bottom-20 right-0 ml-3 mr-8 bg-deep-cerulean-600 p-2 text-sm text-white  rounded border' >Send Message <img alt='send icon' className="inline-block" src="https://img.icons8.com/material-rounded/24/FFFFFF/filled-sent.png"/></button>
             </form>
         </div>
     )

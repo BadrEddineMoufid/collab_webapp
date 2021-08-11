@@ -28,8 +28,13 @@ router.post('/upload', upload.single('file'), (req, res )=>{
 })
 
 router.get('/roomFiles', (req, res)=>{
-    const files = getRoomFiles(req.query.roomname)
-    res.json(files)
+    const roomFiles = getRoomFiles(req.query.roomname)
+    if(!roomFiles){
+        res.json({})
+    }else{
+        res.json(roomFiles)
+
+    }
 })
   
 router.get('/upload/:file', (req, res)=>{

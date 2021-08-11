@@ -21,7 +21,7 @@ function addRoom(roomName, fileName){
 }
 
 function getRoomFiles(roomName){
-
+    console.dir(rooms)
     return rooms.find(room => room.roomName === roomName)
 }
 

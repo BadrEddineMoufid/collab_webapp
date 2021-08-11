@@ -3,13 +3,14 @@ const http = require('http')
 const morgan = require('morgan')
 const cors = require('cors');
 const socketio = require('socket.io')
-const {userJoin,getCurrentUser,userLeave,getRoomUsers} = require('./helper/users')
+const {userJoin,userLeave,getRoomUsers} = require('./helper/users')
 const formatMessage = require('./helper/messages')
+const { getRoomFiles } = require('./helper/room');
 require('dotenv').config();
 
 //import routes
 const authRoute = require("./routes/auth")
-const uploadRoute = require('./routes/upload')
+const uploadRoute = require('./routes/upload');
 
 
 //env stuff 
@@ -25,7 +26,7 @@ const io = socketio(server, {
 })
 
 
-//midlwares
+//midlwares, json, query, form parsers and logger
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
@@ -59,9 +60,11 @@ io.on('connection', socket => {
       );
 
     // Send users and room info
+    //TODO: send room files when user joins room 
     io.to(user.room).emit('roomUsers', {
       room: user.room,
-      users: getRoomUsers(user.room)
+      users: getRoomUsers(user.room),
+      files: getRoomFiles(user.room)
     });
 
 
@@ -72,16 +75,16 @@ io.on('connection', socket => {
   socket.on('chatMessage', data => {
 
       console.log("received data from client: ", data)
-      let {username, text} = data;
+      let {username, text, roomname} = data;
 
-      //get user and room the emit msg to user's room
-      const user = getCurrentUser(username);
+      // //get user and room the emit msg to user's room
+      // const user = getCurrentUser(username);
       
-      let out = formatMessage(user.username, text)
+      let out = formatMessage(username, text)
       console.log("emited data to room ", out)
 
 
-      io.to(user.room).emit('message', out);
+      io.to(roomname).emit('message', out);
   });
 
   // Runs when client disconnects
