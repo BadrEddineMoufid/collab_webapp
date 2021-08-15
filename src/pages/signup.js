@@ -59,6 +59,7 @@ export default function Signup({setIsLoggedIn, setUserName}) {
                     <div>
                         <label htmlFor='email'>Name</label>
                         <input
+                            autoFocus
                             type='text'
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm  mb-4`}
                             id='name'

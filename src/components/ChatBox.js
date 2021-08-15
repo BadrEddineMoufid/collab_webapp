@@ -11,7 +11,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 
     //TODO: setup the disconnect button in nav bar 
     //DONE: display users to side bar
-
+    // use useRef since it's completely seprate from component render cycle
     useEffect(() => {
         socket = io(ENDPOINT);
 
@@ -28,7 +28,8 @@ export default function ChatBox({userName, roomName, setUsers}) {
             setChat(chat =>[...chat, data])
         })
         socket.on('roomUsers', data =>{
-            //console.log(data)
+            console.log(`room users res:`)
+            console.log(data)
             setUsers(data.users);
         })
         
@@ -57,28 +58,29 @@ export default function ChatBox({userName, roomName, setUsers}) {
                             
                             chat.username === 'COLLAB_BOT' ? 
                             <div className="bg-white rounded-md  left-0 shadow-md m-4 text-black w-2/3 relative" key={i}>
-                                <div className='' >
-                                    <h3 className='m-6 inline-block '  > {chat.text} </h3>
-                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
-                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
-                                </div>
+                                
+                                <h3 className='m-6 inline-block '  > {chat.text} </h3>
+                                <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+                            
                             </div>
                             : 
-                            chat.username === userName ?
+                            chat.username === userName 
+                            ?
                             <div className=" right-0 bg-green-500 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
-                                <div className='' >
-                                    <h3 className='m-6 inline-block '  > {chat.text} </h3>
-                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
-                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
-                                </div>
+                                
+                                <h3 className='m-6 inline-block '  > {chat.text} </h3>
+                                <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+                            
                             </div>
                             :  
                             <div className="bg-blue-500  left-0 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
-                                <div className='' >
-                                    <h3 className='m-6 inline-block '  > {chat.text} </h3>
-                                    <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
-                                    <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
-                                </div>
+                                
+                                <h3 className='m-6 inline-block '  > {chat.text} </h3>
+                                <span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
+                                <span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+                            
                             </div>
                         )
                     })

@@ -36,9 +36,11 @@ app.use(cors());
 app.use('/api/v1/',authRoute)
 app.use('/api/v1/', uploadRoute)
 
+
+
+
+
 //DONE: setup socketio stuff 
-
-
 // Run when client connects
 io.on('connection', socket => {
   console.log('new WS connection')
@@ -74,17 +76,17 @@ io.on('connection', socket => {
   // Listen for chatMessage
   socket.on('chatMessage', data => {
 
-      console.log("received data from client: ", data)
-      let {username, text, roomname} = data;
+    console.log("received data from client: ", data)
+    let {username, text, roomname} = data;
 
-      // //get user and room the emit msg to user's room
-      // const user = getCurrentUser(username);
-      
-      let out = formatMessage(username, text)
-      console.log("emited data to room ", out)
+    // //get user and room the emit msg to user's room
+    // const user = getCurrentUser(username);
+    
+    let out = formatMessage(username, text)
+    console.log("emited data to room ", out)
 
 
-      io.to(roomname).emit('message', out);
+    io.to(roomname).emit('message', out);
   });
 
   // Runs when client disconnects
@@ -109,7 +111,7 @@ io.on('connection', socket => {
 
 
     
-  });
+});
 
 
 

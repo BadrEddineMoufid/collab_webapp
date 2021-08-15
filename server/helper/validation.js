@@ -33,18 +33,7 @@ const passwordValidation = data =>{
     return schema.validate(data)
 }
 
-//recipe validation
-const recipeValidation = data =>{
-    const schema = Joi.object({
-        recipe_id: Joi.number().required(),
-        recipe_title: Joi.string().required(),
-        recipe_image_url: Joi.string().uri().required()
-    })
-
-    return schema.validate(data);
-}
 
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
-module.exports.recipeValidation = recipeValidation;
 module.exports.passwordValidation = passwordValidation;

@@ -11,21 +11,20 @@ export default function NavBar({loggedIn, userName}) {
                 <Link className="text-white text-3xl font-bold p-3 no-underline" to='/' >Collab WebApp</Link>
                 <ul className="text-white sm:self-center text-xl border-t sm:border-none">
                     <li className="sm:inline-block  ">
-                        <Link className="p-3 hover:font-extrabold" to="/" >Home</Link>
+                        <Link className="p-3 font-normal  " to="/" >Home</Link>
                     </li>
                     {   loggedIn ?
                         <React.Fragment>
                             <li className="sm:inline-block  ">
-                                <Link className="p-3 hover:font-extrabold" to="/newRoom">Create or Join room </Link>
-                            
+                                <Link className="p-3 font-normal " to="/newRoom">Create or Join room </Link>
                             </li> 
-                            <li className="sm:inline-block font-thin p-3" > ({userName}) </li>
+                            <li className="sm:inline-block font-thin p-3" > 👤 {userName} </li>
                         </React.Fragment>
                         :
                         
                         <span>
-                            <Link className="p-3 hover:font-extrabold " to="/login" >Log In</Link>
-                            <Link className="p-3 hover:font-extrabold" to="/signup" >Sign Up</Link>
+                            <Link className="sm:inline-block p-3 font-normal " to="/login" >Log In</Link>
+                            <Link className="sm:inline-block p-3 font-normal " to="/signup" >Sign Up</Link>
                         </span>   
                         
                     }

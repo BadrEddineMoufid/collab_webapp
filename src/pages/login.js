@@ -58,6 +58,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                     <div>
                         <label htmlFor='email' >Email</label>
                         <input
+                            autoFocus
                             type='email'
                             className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='email'
@@ -83,7 +84,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                     </div>
 
                     {
-                        err ? <span className='flex justify-center items-center mt-6 text-white' >{err.error}</span> : <span></span>
+                        err ? <span className='flex justify-center rounded items-center mt-6 text-yellow-400 font-bold' >{err.error}</span> : <span></span>
                     }
                 </form>
             </div>

@@ -63,7 +63,7 @@ class App extends Component {
             <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} />
           </Route>
           <Route exact path="/newroom">
-            <NewRoom setRoomName={this.setRoomName}  />
+            <NewRoom setRoomName={this.setRoomName} isLoggedIn={this.state.isLoggedIn} />
           </Route>
         </Switch>
       </Router>
