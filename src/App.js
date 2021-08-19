@@ -6,7 +6,8 @@ import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Chat from './pages/Chat';
 import NewRoom from './pages/NewRoom';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
   isLoggedIn: false,
@@ -66,7 +67,9 @@ class App extends Component {
             <NewRoom setRoomName={this.setRoomName} isLoggedIn={this.state.isLoggedIn} />
           </Route>
         </Switch>
+        <ToastContainer limit={2} />
       </Router>
+      
     );
   }
 }

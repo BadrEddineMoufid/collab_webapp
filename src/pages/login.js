@@ -1,12 +1,15 @@
 import React , {useState} from 'react'
 import { Redirect } from 'react-router';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({setIsLoggedIn, setUserName}) => {
+
+
+export default function Login ({setIsLoggedIn, setUserName}){
 
     //DONE:setup component state using useState hook
 
     const [redirect, setRedirect] = useState(false)
-    const [err, setErr] = useState('');
 
     const handleFormSubmit = (e) => {
         e.preventDefault();    
@@ -22,7 +25,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
         .then(response => response.json())
         .then(data => {
             //debug stuff
-            console.log(data)
+            //console.log(data)
 
             
             //TODO: store token in localStorge or something 
@@ -33,7 +36,8 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
             }else{
-                setErr(data)
+                toast.error(data.error, {position:"bottom-center", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
+                
             }
         }).catch(err => {
            
@@ -54,7 +58,7 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                     Log in 🔐
                 </h1>
 
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={handleFormSubmit} >
                     <div>
                         <label htmlFor='email' >Email</label>
                         <input
@@ -78,18 +82,16 @@ const Login = ({setIsLoggedIn, setUserName}) => {
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
-                        <button className="bg-white py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500 hover:text-white">
+                        <button className="bg-white transform  hover:scale-110 py-2 px-4 text-sm text-black rounded border focus:outline-none hover:bg-blue-500 hover:text-white">
                             Log In
                         </button>
                     </div>
 
-                    {
-                        err ? <span className='flex justify-center rounded items-center mt-6 text-yellow-400 font-bold' >{err.error}</span> : <span></span>
-                    }
+                    
                 </form>
             </div>
         </div>
     )
 }
 
-export default Login;
+

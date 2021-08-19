@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export default function Signup({setIsLoggedIn, setUserName}) {
 
@@ -13,7 +17,7 @@ export default function Signup({setIsLoggedIn, setUserName}) {
         let email = e.target.elements.email.value;
         let password = e.target.elements.password.value;
 
-        console.log(name, email, password);
+        //console.log(name, email, password);
 
         //DONE: setup the fetch request for signup
         fetch(`${process.env.REACT_APP_API_BASE_URL}/register`,{
@@ -33,19 +37,22 @@ export default function Signup({setIsLoggedIn, setUserName}) {
             
             //TODO: store token 
             
-            if(data.user.name){
+            if(data.user){
+                toast.success(`${data.user.name} got registered successfully `, {position:"top-right", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
                 setUserName(data.user.name)
                 setIsLoggedIn(true)
                 setRedirect(true)
                 
+            }else{
+                toast.warn(data.error, {position:"bottom-center", hideProgressBar: true, autoClose: 4000, pauseOnHover: false})
             }
 
-        }).catch(err => console.log("sign up error: ", err))
+        }).catch(err => console.log(err))
     };
 
-    //if redirect is true go to home, true only when signup or login is a success 
+    //if redirect is true go to home, true only when signup is a success 
     if(redirect){
-        <Redirect to='/' />
+        return <Redirect to='/' />
     }
 
     return (
@@ -90,7 +97,7 @@ export default function Signup({setIsLoggedIn, setUserName}) {
 
                     <div className='flex justify-center items-center mt-6'>
                         <button
-                            className="bg-white  py-2 px-4 text-sm text-black rounded border-2  focus:outline-none hover:bg-blue-500 hover:text-white">
+                            className="bg-white transform hover:scale-110 py-2 px-4 text-sm text-black rounded border-2  focus:outline-none hover:bg-blue-500 hover:text-white">
                             Sign Up
                         </button>
                     </div>

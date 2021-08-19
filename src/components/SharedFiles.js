@@ -58,7 +58,7 @@ export default function SharedFiles({roomName}) {
                     {files.length === 0 
                     ?
                         <li className='text-sm text-center truncate m-1' >
-                            ⚠ no files yet
+                            ⚠ no files shared yet
                         </li>
                     :
                      files.map((file, i)=>

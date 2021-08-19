@@ -1,5 +1,11 @@
 const rooms = [];
 
+/**
+ * adds file to room if exists else create new room 
+ * @param {roomName} roomName the name of the room
+ * @param {fileName} fileName the name of the file uploaded 
+ * @returns  object room
+ */
 function addRoom(roomName, fileName){
     const room = {roomName: roomName, files: [fileName]};
     const duplicateRoom = rooms.find(room => room.roomName === roomName)
@@ -19,7 +25,11 @@ function addRoom(roomName, fileName){
     return room;
 
 }
-
+/**
+ * 
+ * @param {roomName name of the room} roomName 
+ * @returns returns room object with all files 
+ */
 function getRoomFiles(roomName){
     console.dir(rooms)
     return rooms.find(room => room.roomName === roomName)

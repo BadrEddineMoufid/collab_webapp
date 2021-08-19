@@ -8,14 +8,14 @@ export default function NavBar({loggedIn, userName}) {
         <nav className="bg-deep-cerulean-700 shadow-lg sticky top-0 z-50">
             <div className="sm:flex justify-between">
                 
-                <Link className="text-white text-3xl font-bold p-3 no-underline" to='/' >Collab WebApp</Link>
+                <Link className="text-white text-3xl  font-bold p-3 no-underline " to='/' >Collab WebApp</Link>
                 <ul className="text-white sm:self-center text-xl border-t sm:border-none">
-                    <li className="sm:inline-block  ">
+                    <li className="sm:inline-block  transform  hover:scale-110">
                         <Link className="p-3 font-normal  " to="/" >Home</Link>
                     </li>
                     {   loggedIn ?
                         <React.Fragment>
-                            <li className="sm:inline-block  ">
+                            <li className="sm:inline-block  transform  hover:scale-110">
                                 <Link className="p-3 font-normal " to="/newRoom">Create or Join room </Link>
                             </li> 
                             <li className="sm:inline-block font-thin p-3" > 👤 {userName} </li>
@@ -23,8 +23,8 @@ export default function NavBar({loggedIn, userName}) {
                         :
                         
                         <span>
-                            <Link className="sm:inline-block p-3 font-normal " to="/login" >Log In</Link>
-                            <Link className="sm:inline-block p-3 font-normal " to="/signup" >Sign Up</Link>
+                            <Link className="sm:inline-block p-3 font-normal transform  hover:scale-110" to="/login" >Log In</Link>
+                            <Link className="sm:inline-block p-3 font-normal transform  hover:scale-110" to="/signup" >Sign Up</Link>
                         </span>   
                         
                     }
