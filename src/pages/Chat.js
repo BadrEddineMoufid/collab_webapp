@@ -9,7 +9,7 @@ function Chat({roomName, userName, isLoggedIn}) {
 
     //DONE: check if user is logged in (get a prop isLoggedIn from App if false Redirect to LogIn )
     //check state for a room if false redirect to create a room then 
-    //come back here i think idk shit to complex  i want backend stuff :( °~°
+    //come back here :(  i want backend stuff :( °~°
     //pass users and room name to SideBar
     const [users, setUsers] = useState([])
 

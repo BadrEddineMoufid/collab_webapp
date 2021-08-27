@@ -5,7 +5,10 @@
 /.pnp
 .pnp.js
 .vscode
+
+#upload dir
 /server/upload
+
 # testing
 /coverage
 

@@ -27,13 +27,20 @@ function addRoom(roomName, fileName){
 }
 /**
  * 
- * @param {roomName name of the room} roomName 
+ * @param {roomName } roomName name of the room
  * @returns returns room object with all files 
  */
 function getRoomFiles(roomName){
     console.dir(rooms)
     return rooms.find(room => room.roomName === roomName)
 }
+
+/**
+ * 
+ * @param {roomName } roomName name of the room
+ * @param {fileName } fileName  name of the file to add to room
+ * @returns the entire room object 
+ */
 
 function addFileToRoom(roomName, fileName){
     const foundRoom = rooms.find(room => room.roomName === roomName)

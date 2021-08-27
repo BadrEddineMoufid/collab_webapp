@@ -32,16 +32,16 @@ export default function Login ({setIsLoggedIn, setUserName}){
             
             if(data.user){
 
-                setRedirect(true)
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
+                setRedirect(true)
             }else{
                 toast.error(data.error, {position:"bottom-center", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
                 
             }
         }).catch(err => {
-           
-            console.log(err)
+					toast.error(err.toString(), {position:"bottom-center", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
+					console.log(err)
         })
 
         
@@ -52,8 +52,8 @@ export default function Login ({setIsLoggedIn, setUserName}){
     }
 
     return (
-        <div className='h-screen flex bg-gray-200'>
-            <div className='w-full max-w-md m-auto bg-deep-cerulean-600 text-white rounded-lg border-2 shadow-md py-10 px-16'>
+        <div className='h-screen flex bg-gray-200  '>
+            <div className='w-full max-w-md m-auto  bg-deep-cerulean-600 text-white rounded-lg border-2 shadow-md py-10 px-16'>
                 <h1 className='text-2xl font-medium  mt-4 mb-12 text-center'>
                     Log in 🔐
                 </h1>
