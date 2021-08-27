@@ -17,7 +17,9 @@ export default function ChatBox({userName, roomName, setUsers}) {
 
 		socket.emit('joinRoom', {username:userName, room:roomName}) 
 
-		
+		return () =>{
+			socket.close();
+		}
 	},[])
 
 	useEffect(()=>{

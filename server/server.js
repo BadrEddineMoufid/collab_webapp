@@ -43,7 +43,7 @@ app.use('/api/v1/', uploadRoute)
 //DONE: setup socketio stuff 
 // Run when client connects
 io.on('connection', socket => {
-  console.log('new WS connection')
+  console.log(`🔗 socket with id: ${socket.id} connected`)
 
 
   socket.on('joinRoom', ({ username, room }) => {
@@ -79,7 +79,7 @@ io.on('connection', socket => {
     console.log("received data from client: ", data)
     let {username, text, roomname} = data;
 
-    // //get user and room the emit msg to user's room
+    // get user and room the emit msg to user's room
     // const user = getCurrentUser(username);
     
     let out = formatMessage(username, text)
@@ -92,7 +92,10 @@ io.on('connection', socket => {
   // Runs when client disconnects
   socket.on('disconnect', () => {
     const user = userLeave(socket.id);
-    console.log('a WS disconnected')
+    
+		console.log(`🔌 socket with id: ${socket.id} disconnected `)
+
+
     if (user) {
       io.to(user.room).emit(
         'message',

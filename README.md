@@ -4,6 +4,8 @@
 
 cd to server directory and run
 
+
+### `npm i`
 ### `npm run dev`
 
 this will start the server in dev mode and will listen on the port entered in the `.env` file

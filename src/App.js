@@ -51,7 +51,7 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <NavBar loggedIn={this.state.isLoggedIn} userName={this.state.user_name} />
+        <NavBar loggedIn={this.state.isLoggedIn} userName={this.state.user_name} setRoomName={this.setRoomName} roomName={this.state.roomName} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" >

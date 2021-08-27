@@ -64,7 +64,7 @@ export default function Login ({setIsLoggedIn, setUserName}){
                         <input
                             autoFocus
                             type='email'
-                            className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm focus:border-gray-700 mb-4`}
                             id='email'
                             placeholder='Your Email'
                             required
@@ -74,7 +74,7 @@ export default function Login ({setIsLoggedIn, setUserName}){
                         <label htmlFor='password'>Password</label>
                         <input
                             type='password'
-                            className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            className={`w-full p-2 text-black border-2 border-gray-300 rounded-md outline-none text-sm focus:border-gray-700 mb-4`}
                             id='password'
                             placeholder='Your Password'
                             required
