@@ -9,14 +9,15 @@ export default function ChatBox({userName, roomName, setUsers}) {
 	const [chat, setChat] = useState([])
 	const [message, setMessage] = useState('')
 
-	//TODO: setup the disconnect button in nav bar 
 	//DONE: display users to side bar
 	// use useRef since it's completely seprate from component render cycle
 	useEffect(() => {
 		socket = io(ENDPOINT);
 
 		socket.emit('joinRoom', {username:userName, room:roomName}) 
-
+		
+		//close socket connection on component unmout 
+		//useEffect return function executes on component unmout if the dependecy array is emty
 		return () =>{
 			socket.close();
 		}

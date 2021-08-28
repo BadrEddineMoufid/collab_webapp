@@ -62,7 +62,7 @@ io.on('connection', socket => {
       );
 
     // Send users and room info
-    //TODO: send room files when user joins room 
+    //DONE: send room files when user joins room 
     io.to(user.room).emit('roomUsers', {
       room: user.room,
       users: getRoomUsers(user.room),
