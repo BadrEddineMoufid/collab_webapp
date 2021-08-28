@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import io from 'socket.io-client'
 
 
@@ -8,6 +8,7 @@ const ENDPOINT = process.env.REACT_APP_SOCKET_BASE_URL;
 export default function ChatBox({userName, roomName, setUsers}) {
 	const [chat, setChat] = useState([])
 	const [message, setMessage] = useState('')
+	const chatEndRef = useRef(null)
 
 	//DONE: display users to side bar
 	// use useRef since it's completely seprate from component render cycle
@@ -31,13 +32,21 @@ export default function ChatBox({userName, roomName, setUsers}) {
 			setChat(chat =>[...chat, data])
 		})
 		socket.on('roomUsers', data =>{
-			console.log(`room users res:`)
-			console.log(data)
+			//console.log(`room users res:`)
+			//console.log(data)
 			setUsers(data.users);
 		})
 		
 	}, [])
 	
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [chat]);
 	
 
 	const handlSubmit = e=>{
@@ -54,7 +63,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 
 	return (
 		<div className='h-screen w-full bg-gray-200 '>
-			<div className=" h-2/3 p-4 m-4 overflow-y-auto  relative" >
+			<div className=" h-2/3 p-4 m-4 overflow-y-scroll  relative" >
 				{
 					chat.map((chat,i)=>{
 						return ( 
@@ -63,31 +72,34 @@ export default function ChatBox({userName, roomName, setUsers}) {
 							<div className="bg-white rounded-md  left-0 shadow-md m-4 text-black w-2/3 relative" key={i}>
 								
 								<h3 className='m-6 inline-block '  > {chat.text} </h3>
-								<span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
-								<span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+								<span className='absolute bottom-2 right-0 text-xs mr-8' > {chat.time} </span>
+								<span className='absolute bottom-2 right-20 text-xs mr-3' > {chat.username} </span>
 							
 							</div>
 							: 
 							chat.username === userName 
 							?
-							<div className=" right-0 bg-green-500 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
+							<div className="  right-0 bg-green-500 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
 								
 								<h3 className='m-6 inline-block '  > {chat.text} </h3>
-								<span className='absolute bottom-2  right-0 text-xs' > {chat.time} </span>
-								<span className='absolute bottom-2  right-20 text-xs' > {chat.username} </span>
+								<span className='absolute bottom-2  right-0 text-xs mr-8' > {chat.time} </span>
+								<span className='absolute bottom-2  right-20 text-xs mr-3' > {chat.username} </span>
 							
 							</div>
 							:  
 							<div className="bg-blue-500  left-0 rounded-md shadow-md m-4 text-white w-2/3 relative " key={i}>
 								
 								<h3 className='m-6 inline-block '  > {chat.text} </h3>
-								<span className='absolute bottom-2 right-0 text-xs' > {chat.time} </span>
-								<span className='absolute bottom-2 right-20 text-xs' > {chat.username} </span>
+								<span className='absolute bottom-2 right-0 text-xs mr-8' > {chat.time} </span>
+								<span className='absolute bottom-2 right-20 text-xs mr-3' > {chat.username} </span>
 							
 							</div>
 						)
 					})
 				}
+				<div ref={chatEndRef} className="bg-blue-500  left-0 rounded-md shadow-md m-4 text-white w-2/3 relative ">
+				</div>
+
 
 			</div>
 			

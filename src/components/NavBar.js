@@ -20,7 +20,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 
   ///get a prop islogedin if true render home link and room link else render default nav 
 	return (
-		<nav className="bg-deep-cerulean-700 shadow-lg sticky top-0 z-50">
+		<nav className="bg-deep-cerulean-700 shadow-lg ">
 			<div className="sm:flex justify-between">
 					
 				<Link className="text-white text-3xl  font-bold p-3 no-underline " to='/' >Collab WebApp</Link>
@@ -68,6 +68,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 					
 				</ul>
 			</div>
+			
 		</nav>
   )
 }

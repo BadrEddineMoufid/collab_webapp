@@ -43,7 +43,7 @@ app.use('/api/v1/', uploadRoute)
 //DONE: setup socketio stuff 
 // Run when client connects
 io.on('connection', socket => {
-  console.log(`🔗 socket with id: ${socket.id} connected`)
+  console.log(`🔗 WS ${socket.id} connected`)
 
 
   socket.on('joinRoom', ({ username, room }) => {
@@ -93,7 +93,7 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     const user = userLeave(socket.id);
     
-		console.log(`🔌 socket with id: ${socket.id} disconnected `)
+		console.log(`🔌 WS ${socket.id} disconnected `)
 
 
     if (user) {

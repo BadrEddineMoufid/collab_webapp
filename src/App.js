@@ -17,6 +17,7 @@ const initialState = {
 
 class App extends Component {
   // maybe some session stuff or localStorage for token MAYBE
+	//TODO: setup Video Chat component
   constructor(){
     super();
     this.state = initialState;

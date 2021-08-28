@@ -35,11 +35,12 @@ export default function Signup({setIsLoggedIn, setUserName}) {
             //debug
             console.log(data)
             
-            //TODO: store token 
+            //DONE: store token 
             
             if(data.user){
                 toast.success(`${data.user.name} got registered successfully `, {position:"top-right", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
                 setUserName(data.user.name)
+								localStorage.setItem('token', data.token)
                 setIsLoggedIn(true)
                 setRedirect(true)
                 

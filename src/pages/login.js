@@ -28,12 +28,13 @@ export default function Login ({setIsLoggedIn, setUserName}){
             //console.log(data)
 
             
-            //TODO: store token in localStorge or something 
+            //DONE: store token in localStorge or something 
             
             if(data.user){
 
                 setIsLoggedIn(true)
                 setUserName(data.user.name)
+								localStorage.setItem("token", data.token)
                 setRedirect(true)
             }else{
                 toast.error(data.error, {position:"bottom-center", hideProgressBar: true, autoClose: 2000, pauseOnHover: false})
