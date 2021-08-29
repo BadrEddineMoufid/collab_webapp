@@ -13,7 +13,7 @@ export default function NewRoom({setRoomName, isLoggedIn}) {
 		if(room.length < 4 ){
 			toast.error("Room Name must be at least 4 Characters", {position:"bottom-center", autoClose: 2000, pauseOnHover: false})
 		}else{
-			setRoomName(room)
+			setRoomName(room.trim())
 			setRedirect(true)
 		
 		}

@@ -14,6 +14,8 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 	}
 
 	const handleDisconnect = (e) =>{
+		localStorage.clear();
+		
 		setIsLoggedIn(false)
 		history.push('/')
 	}
@@ -31,8 +33,8 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 						loggedIn && roomName.length > 1 ?
 
 						<React.Fragment>
-							<li className="sm:inline-block font-thin p-3" > 👤 {userName} </li>
-							<li className="sm:inline-block font-normal cursor-pointer p-3 transform hover:scale-110 " onClick={handleLeaveRoom} > Leave Room </li>
+							<li className="sm:inline-block font-normal cursor-pointer p-2  rounded transform hover:scale-110 " onClick={handleLeaveRoom} > Leave Room </li>
+							<li className="sm:inline-block font-thin p-3 mr-4" > 👤 {userName} </li>
 						</React.Fragment>
 						
 						:

@@ -11,7 +11,7 @@ router.post('/login',  async (req, res) => {
 
     //validating input 
     const {error} = loginValidation(req.body)
-    if (error) return res.status(400).json({error: "invalid email or password"})
+    if (error) return res.status(400).json({error: "invalid email or password structure"})
 
     //getting values from req body
     const {email, password} = req.body
@@ -20,10 +20,10 @@ router.post('/login',  async (req, res) => {
         //verifiying email and password
         //if returned array is empty then the user doesn't exist in dataBase
         const user = await knex("users").select('*').where('email',email)
-        if(user.length === 0) return res.status(400).json({error: 'invalid email'})
+        if(user.length === 0) return res.status(400).json({error: 'invalid credentials'})
 
         const validPassword = await bcrypt.compare(password, user[0].hash)
-        if(!validPassword) return res.status(400).json({error: 'invalid password'})
+        if(!validPassword) return res.status(400).json({error: 'invalid credentials'})
         
         //debug
         //user.forEach(elm => console.log(elm))

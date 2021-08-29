@@ -8,6 +8,8 @@ const ENDPOINT = process.env.REACT_APP_SOCKET_BASE_URL;
 export default function ChatBox({userName, roomName, setUsers}) {
 	const [chat, setChat] = useState([])
 	const [message, setMessage] = useState('')
+
+	//refrences the dumy chat div at the end 
 	const chatEndRef = useRef(null)
 
 	//DONE: display users to side bar
@@ -18,7 +20,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 		socket.emit('joinRoom', {username:userName, room:roomName}) 
 		
 		//close socket connection on component unmout 
-		//useEffect return function executes on component unmout if the dependecy array is emty
+		//useEffect return function executes on component unmout 
 		return () =>{
 			socket.close();
 		}
@@ -39,11 +41,12 @@ export default function ChatBox({userName, roomName, setUsers}) {
 		
 	}, [])
 	
-
+	
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
+	//executes whenever chat update === state update === component rerender hhhhh
   useEffect(() => {
     scrollToBottom()
   }, [chat]);

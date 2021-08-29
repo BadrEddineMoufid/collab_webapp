@@ -6,6 +6,7 @@ import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Chat from './pages/Chat';
 import NewRoom from './pages/NewRoom';
+import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -67,6 +68,7 @@ class App extends Component {
           <Route exact path="/newroom">
             <NewRoom setRoomName={this.setRoomName} isLoggedIn={this.state.isLoggedIn} />
           </Route>
+					<Route path='*'  component={NotFound} />
         </Switch>
         <ToastContainer limit={2} />
       </Router>
