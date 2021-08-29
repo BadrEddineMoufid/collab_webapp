@@ -6,7 +6,7 @@ import UserList from './UserList'
 export default function SideBar({roomName, users}) {
 
 	const handleCopyRoomName = () =>{
-		toast.info(`Copied Room Name to clipboard ${roomName}`, {position:'top-right',autoClose: 2000, pauseOnHover: false} )
+		toast.info(`Copied Room Name to clipboard   ${roomName}`, {position:'top-right',autoClose: 2000, pauseOnHover: false} )
 		navigator.clipboard.writeText(roomName)
 	}
 
@@ -17,7 +17,7 @@ export default function SideBar({roomName, users}) {
 
 			<div className='flex justify-between'>
 				<span className='text-font-bold text-xl ml-4 text-white ' >🚪 {roomName} </span>
-				<img alt='copy icon' className='cursor-pointer ' onClick={handleCopyRoomName} src="https://img.icons8.com/ios-glyphs/30/FFFFFF/copy.png"/>
+				<img alt='copy icon' className='cursor-pointer ' onClick={handleCopyRoomName} src="copy-icon.png"/>
 			</div>
 		
 

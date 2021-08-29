@@ -9,9 +9,9 @@ import img3 from '../images/WFH.png'
 //TODO:display more details like how the app works and stuff
 
 
-export default function  home() {
-
-  return (
+export default function  Home() {
+	
+	return (
       
     <div className="md:h-full lg:h-screen p-12 bg-gray-200">
       <div className="grid sm:grid-cols-1 sm:gap-4 md:grid-cols-2 md:gap-4  lg:grid-cols-3 lg:gap-6">

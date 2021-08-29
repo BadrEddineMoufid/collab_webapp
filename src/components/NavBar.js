@@ -15,7 +15,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 
 	const handleDisconnect = (e) =>{
 		localStorage.clear();
-		
+
 		setIsLoggedIn(false)
 		history.push('/')
 	}

@@ -76,7 +76,7 @@ export default function SharedFiles({roomName}) {
 				<label className='cursor-pointer font-bold text-deep-cerulean-700 w-full ' htmlFor='file' >
 					Upload your file
 				</label>
-				<img alt='upload icon' className='h-full' src="https://img.icons8.com/metro/25/000000/upload.png"/>
+				<img alt='upload icon' className='h-full' src="https://img.icons8.com/metro/25/007ba7/upload.png"/>
 				<input className='' name='file' id='file' type='file' onChange={handleChange} />
 			</div>
 		  

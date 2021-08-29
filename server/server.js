@@ -95,7 +95,7 @@ io.on('connection', socket => {
     
 		console.log(`🔌 WS ${socket.id} disconnected `)
 
-
+		//maybe delete room files from mem when all users leave the room === check if all users left room before deleting hhh
     if (user) {
       io.to(user.room).emit(
         'message',
