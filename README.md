@@ -2,13 +2,13 @@
 
 ## Available scripts
 
-cd to server directory and run
+cd to server directory and 
+
+1. Install dependencies  `npm i`
+2. Run Server in DEV mode using the `.env ` file `npm run dev`
 
 
-### `npm i`
-### `npm run dev`
-
-this will start the server in dev mode and will listen on the port entered in the `.env` file
+#
 
 ### `.env` 
 the file contains all the database cnx vars and others

@@ -6,7 +6,8 @@ export default function SharedFiles({roomName}) {
 
 	const handleChange = (e)=>{
 		e.preventDefault()
-		console.log(e.target.files[0])
+		
+		//console.log(e.target.files[0])
 
 		const data = new FormData()
 		data.append('file', e.target.files[0])
@@ -32,7 +33,7 @@ export default function SharedFiles({roomName}) {
 				const res =  await fetch(`${process.env.REACT_APP_API_BASE_URL}/roomFiles?roomname=${roomName}`, {method: 'GET'})
 				const json = await res.json();
 
-				//console.log(json)
+				console.log(json)
 				if(json.files){
 					setFiles(json.files)
 				}
@@ -49,7 +50,7 @@ export default function SharedFiles({roomName}) {
 
 		return () => clearInterval(id)
 
-	}, [])
+	}, [roomName])
 
 	return (
 		<React.Fragment >
@@ -72,7 +73,7 @@ export default function SharedFiles({roomName}) {
 				</ul>
 			</div>
 			
-			<div className='flex justify-evenly w-full border bg-gray-200 mt-2 p-2 rounded' >
+			<div className='flex justify-evenly w-full border bg-gray-200 mt-2 p-2 rounded ' >
 				<label className='cursor-pointer font-bold text-deep-cerulean-700 w-full ' htmlFor='file' >
 					Upload your file
 				</label>
