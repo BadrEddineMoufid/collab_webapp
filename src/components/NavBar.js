@@ -27,7 +27,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 					
 				<Link className="text-white text-3xl  font-bold p-3 no-underline " to='/' >Collab WebApp</Link>
 				
-				<ul className="text-white sm:self-center text-xl border-t sm:border-none">
+				<ul className="text-white sm:self-center text-xl  sm:border-none">
 					
 					{ 
 						loggedIn && roomName.length > 1 ?
@@ -48,14 +48,13 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 							<li className="sm:inline-block  transform  hover:scale-110">
 								<Link className="p-3 font-normal " to="/newRoom">Create or Join room </Link>
 							</li> 
-							<li className="sm:inline-block font-normal cursor-pointer p-3 transform hover:scale-110" onClick={handleDisconnect} > Disconnect </li>
 							<li className="sm:inline-block font-thin p-3" > 👤 {userName} </li>
+							<img className="sm:inline-block cursor-pointer p-2 self-center transform hover:scale-110" src="https://img.icons8.com/ios-glyphs/30/ffffff/logout-rounded-up--v2.png" alt='' onClick={handleDisconnect} />
 						
 						</React.Fragment>
 						
 						:
 
-						!loggedIn ?
 						<>
 							<li className="sm:inline-block  transform  hover:scale-110">
 								<Link className="p-3 font-normal  " to="/" >Home</Link>
@@ -63,8 +62,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 							<Link className="sm:inline-block p-3 font-normal transform  hover:scale-110" to="/login" >Log In</Link>
 							<Link className="sm:inline-block p-3 font-normal transform  hover:scale-110" to="/signup" >Sign Up</Link>
 						</> 
-						:
-						<></>
+						
 						 
 					}
 					
