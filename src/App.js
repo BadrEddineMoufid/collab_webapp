@@ -9,11 +9,13 @@ import NewRoom from './pages/NewRoom';
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import VideoChat from './pages/VideoChat';
 
 const initialState = {
   isLoggedIn: false,
   user_name: '',
-  roomName:''
+  roomName:'',
+	type:''
 }
 
 class App extends Component {
@@ -28,7 +30,9 @@ class App extends Component {
   // componentDidMount(){
   //   console.log(`ComponentDidMount| isLoggedIn:${this.state.isLoggedIn}`)
   // }
-
+	setType = (type)=>{
+		this.setState({type: type})
+	}
   setIsLoggedIn = (loggedIn) =>{
     if(loggedIn){
       this.setState({isLoggedIn: true})
@@ -66,8 +70,11 @@ class App extends Component {
             <Chat roomName={this.state.roomName} userName={this.state.user_name} isLoggedIn={this.state.isLoggedIn} />
           </Route>
           <Route exact path="/newroom">
-            <NewRoom setRoomName={this.setRoomName} isLoggedIn={this.state.isLoggedIn} />
+            <NewRoom setRoomName={this.setRoomName} isLoggedIn={this.state.isLoggedIn} setType={this.setType} type={this.state.type} />
           </Route>
+					<Route exact path='/videoChat' >
+						<VideoChat userName={this.state.user_name} roomName={this.state.roomName} isLoggedIn={this.state.isLoggedIn} />
+					</Route>
 					<Route path='*'  component={NotFound} />
         </Switch>
         <ToastContainer limit={2} />

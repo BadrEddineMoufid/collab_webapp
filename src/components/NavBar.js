@@ -25,7 +25,7 @@ export default function NavBar({loggedIn, setIsLoggedIn, userName, setRoomName, 
 		<nav className="bg-deep-cerulean-700 shadow-lg ">
 			<div className="sm:flex justify-between">
 					
-				<Link className="text-white text-3xl  font-bold p-3 no-underline " to='/' >Collab WebApp</Link>
+				<Link className="text-white text-3xl  font-bold p-3 no-underline " to='/' >Collab App</Link>
 				
 				<ul className="text-white sm:self-center text-xl  sm:border-none">
 					

@@ -14,17 +14,17 @@ function Chat({roomName, userName, isLoggedIn}) {
 	const [users, setUsers] = useState([])
 
 	if(!isLoggedIn){
-			return <Redirect to='/login'/>
+		return <Redirect to='/login'/>
 	}
 	if(!roomName){
-			return <Redirect to='/newroom' />
+		return <Redirect to='/newroom' />
 	}
 	
 	return (
-			<div className='relative h-full flex bg-gray-200' >
-					<SideBar roomName={roomName} users={users} />
-					<ChatBox roomName={roomName} userName={userName} setUsers={setUsers} />
-			</div>
+		<div className='relative h-full flex bg-gray-200' >
+			<SideBar roomName={roomName} users={users} />
+			<ChatBox roomName={roomName} userName={userName} setUsers={setUsers} />
+		</div>
 	)
 }
 
