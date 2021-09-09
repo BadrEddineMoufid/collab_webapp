@@ -1,13 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react'
 import io from 'socket.io-client'
+import { encrypt } from '../helper/aes';
 
 
-let socket; 
-const ENDPOINT = process.env.REACT_APP_SOCKET_BASE_URL;
 
 export default function ChatBox({userName, roomName, setUsers}) {
 	const [chat, setChat] = useState([])
 	const [message, setMessage] = useState('')
+	const socketRef = useRef()
 
 	//refrences the dumy chat div at the end 
 	const chatEndRef = useRef(null)
@@ -15,25 +15,25 @@ export default function ChatBox({userName, roomName, setUsers}) {
 	//DONE: display users to side bar
 	// use useRef since it's completely seprate from component render cycle
 	useEffect(() => {
-		socket = io(ENDPOINT);
+		socketRef.current = io(process.env.REACT_APP_SOCKET_BASE_URL);
 
-		socket.emit('joinRoom', {username:userName, room:roomName}) 
+		socketRef.current.emit('joinRoom', {username:userName, room:roomName}) 
 		
 		//close socket connection on component unmout 
 		//useEffect return function executes on component unmout 
 		return () =>{
-			socket.close();
+			socketRef.current.close();
 		}
 	},[])
 
 	useEffect(()=>{
 		//message from server
-		socket.on('message', data=>{
+		socketRef.current.on('message', data=>{
 			//console.log('message from server: ',data)
 
 			setChat(chat =>[...chat, data])
 		})
-		socket.on('roomUsers', data =>{
+		socketRef.current.on('roomUsers', data =>{
 			//console.log(`room users res:`)
 			//console.log(data)
 			setUsers(data.users);
@@ -57,7 +57,15 @@ export default function ChatBox({userName, roomName, setUsers}) {
 
 		//console.log("handle submit: ", message)
 
-		socket.emit('chatMessage', {username: userName,text:message.trim(), roomname:roomName})
+		// let message;
+		// if(process.env.REACT_APP_SOCKET_DEV_MODE){
+		// 	message = encrypt({username: userName,text:message.trim(), roomname:roomName})
+		// }else{
+		// 	message = {username: userName,text:message.trim(), roomname:roomName}
+		// }
+
+		
+		socketRef.current.emit('chatMessage', {username: userName,text:message.trim(), roomname:roomName})
 
 		e.target.elements.chatInput.value = ''
 

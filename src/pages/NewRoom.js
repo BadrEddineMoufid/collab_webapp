@@ -12,6 +12,7 @@ export default function NewRoom({setRoomName, isLoggedIn, setType, type}) {
 		e.preventDefault();
 	
 		let room = e.target.elements.chat_room_name.value.trim();
+		
 		if(room.length < 4 ){
 
 			toast.error("Room Name must be at least 4 Characters", {position:"bottom-center", autoClose: 2000, pauseOnHover: false})

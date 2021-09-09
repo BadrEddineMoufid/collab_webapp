@@ -9,18 +9,14 @@ export default function UserList({users}) {
 	return (
 		<div>
 			<ul className=" mt-2 bg-gray-200 h-60 overflow-auto rounded text-deep-cerulean-700 text-xl border ">
-				{	users.length !== 0 
-					?
+				{	
 					users.map((user, i) => 
 					
 					<li key={i} className="m-2 ">
 							👤 {user.username}
 					</li>
 					)
-					:
-					<li className="m-2 ">
-						!
-					</li>
+					
 				}
 			</ul>
 		</div>

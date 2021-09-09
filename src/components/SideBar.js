@@ -11,7 +11,7 @@ export default function SideBar({roomName, users}) {
 	}
 
 	return (
-		<div className='bg-deep-cerulean-700 w-64 mt-2 mb-2 ml-1 p-2 ' >
+		<div className='bg-deep-cerulean-700 w-64 mt-2 mb-2 ml-1 p-2 h-screen' >
 			
 			<p className='font-bold text-xl text-white mb-2' >Room Name : </p>
 
@@ -20,12 +20,23 @@ export default function SideBar({roomName, users}) {
 				<img alt='copy icon' className='cursor-pointer ' onClick={handleCopyRoomName} src="copy-icon.png"/>
 			</div>
 		
-
-			<p className='font-bold text-xl text-white mt-2' >Users : </p>
-			<UserList users={users} />
+			{
+				users.length === 0 
+				?
+				<>
+					<p className='font-bold text-xl text-white mt-2' >Shared Files : </p>
+					<SharedFiles roomName={roomName} />
+				</>
+				:
+				<>
+					<p className='font-bold text-xl text-white mt-2' >Users : </p>
+					<UserList users={users} />
+				
+					<p className='font-bold text-xl text-white mt-2' >Shared Files : </p>
+					<SharedFiles roomName={roomName} />
+				</>
+			}
 			
-			<p className='font-bold text-xl text-white mt-2' >Shared Files : </p>
-			<SharedFiles roomName={roomName} />
 			
 		</div>
 	)
