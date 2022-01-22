@@ -33,7 +33,8 @@ export default function SharedFiles({roomName}) {
 				const res =  await fetch(`${process.env.REACT_APP_API_BASE_URL}/roomFiles?roomname=${roomName}`, {method: 'GET'})
 				const json = await res.json();
 
-				console.log(json)
+				//console.log(json)
+				
 				if(json.files){
 					setFiles(json.files)
 				}

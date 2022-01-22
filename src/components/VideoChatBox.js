@@ -16,8 +16,11 @@ export default function VideoChatBox({roomName}) {
 
 
 		navigator.mediaDevices.getUserMedia({video: {height: 300, width: 350}, audio: true}).then(stream => {
+
 			userVideo.current.srcObject = stream
+
 			myStream.current = stream
+			 
 			socketRef.current.emit('join VidConf', roomName)
 			
 			socketRef.current.on("all users", users => {
@@ -37,25 +40,25 @@ export default function VideoChatBox({roomName}) {
 			})
 
 			socketRef.current.on("user joined", payload => {
-					const peer = addPeer(payload.signal, payload.callerID, stream);
-					peersRef.current.push({
-							peerID: payload.callerID,
-							peer,
-					})
+				const peer = addPeer(payload.signal, payload.callerID, stream);
+				peersRef.current.push({
+						peerID: payload.callerID,
+						peer,
+				})
 
-					setPeers(users => [...users, peer]);
+				setPeers(users => [...users, peer]);
 			});
 
 			socketRef.current.on("receiving returned signal", payload => {
-					const item = peersRef.current.find(p => p.peerID === payload.id);
-					item.peer.signal(payload.signal);
+				const item = peersRef.current.find(p => p.peerID === payload.id);
+				item.peer.signal(payload.signal);
 			});
 
 		})
 
 		return ()=>{
 			socketRef.current.close()
-			myStream.current.getTracks().forEach(function(track) {
+			myStream.current.getTracks().forEach((track) => {
         if (track.readyState === 'live') {
             track.stop();
         }
@@ -69,11 +72,11 @@ export default function VideoChatBox({roomName}) {
 		const peer = new Peer({
 				initiator: true,
 				trickle: false,
-				stream,
+				stream: stream,
 		});
 
 		peer.on("signal", signal => {
-				socketRef.current.emit("sending signal", { userToSignal, callerID, signal })
+			socketRef.current.emit("sending signal", { userToSignal, callerID, signal })
 		})
 
 		return peer;
@@ -83,7 +86,7 @@ export default function VideoChatBox({roomName}) {
 			const peer = new Peer({
 					initiator: false,
 					trickle: false,
-					stream,
+					stream: stream,
 			})
 
 			peer.on("signal", signal => {

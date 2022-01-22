@@ -43,21 +43,18 @@ const socketToRoom = {};
 
 
 //DONE: setup socketio stuff 
-// Run when client connects
-
-
-
-
-/**  Chat socket **/
-
+//TODO: use diffrent namespace for chat and vidconf in socket connection 
 io.on('connection', socket => {
   console.log(`🔗 WS ${socket.id} connected`)
 
+
+	//video conf 
 	socket.on("join VidConf", roomID => {
-		console.log('joinned executed');
+		console.log('joinned vidConf');
 
 		if (users[roomID]) {
 			const length = users[roomID].length;
+			//temporary bs logic limit user to 4 
 			if (length === 4) {
 				socket.emit("room full");
 				return;

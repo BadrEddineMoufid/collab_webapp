@@ -20,6 +20,7 @@ function addRoom(roomName, fileName){
 			rooms.push(room)
 	}
 	
+	//debug
 	console.dir(rooms)
 
 	return room;

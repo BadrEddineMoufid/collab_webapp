@@ -15,7 +15,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 	//DONE: display users to side bar
 	// use useRef since it's completely seprate from component render cycle
 	useEffect(() => {
-		socketRef.current = io(process.env.REACT_APP_SOCKET_BASE_URL);
+		socketRef.current = io(`${process.env.REACT_APP_SOCKET_BASE_URL}`);
 
 		socketRef.current.emit('joinRoom', {username:userName, room:roomName}) 
 		
@@ -34,8 +34,7 @@ export default function ChatBox({userName, roomName, setUsers}) {
 			setChat(chat =>[...chat, data])
 		})
 		socketRef.current.on('roomUsers', data =>{
-			//console.log(`room users res:`)
-			//console.log(data)
+			console.log("room users: " + data)
 			setUsers(data.users);
 		})
 		
